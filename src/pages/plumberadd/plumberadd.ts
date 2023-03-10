@@ -41,7 +41,7 @@ export class PlumberaddPage {
 
     this.data.document_image='';
     console.log(this.data.profile);
-    this.data.document_type='Adharcard';
+    this.data.document_type='Aadharcard';
     this.today_date = new Date().toISOString().slice(0,10);
   }
 

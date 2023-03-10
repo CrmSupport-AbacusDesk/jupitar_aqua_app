@@ -49,12 +49,12 @@
 
 
 
-                        <div class="text-box">
+                        <div class="text-box" *ngIf="karigar_detail.user_type!='1'">
                             <p>{{'Alternate Mobile No.' | translate}}</p>
                             <h6>{{karigar_detail.alternate_mobile_no ? karigar_detail.alternate_mobile_no:'N/A'}}</h6>
                         </div>
 
-                        <div class="text-box" *ngIf="data.user_type=='2'">
+                        <div class="text-box" *ngIf="karigar_detail.user_type=='2'">
                             <p>{{'GST Number' | translate}}</p>
                             <h6>{{karigar_detail.gst_number ? karigar_detail.gst_number:'N/A'}}</h6>
                         </div>

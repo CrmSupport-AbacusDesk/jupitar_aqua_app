@@ -25,6 +25,8 @@
 
 "Point History":"बिंदु इतिहास",
 "Choose Type":"प्रकार चुनें",
+"Alternate Mobile No.":"वैकल्पिक मोबाइल नंबर",
+"Same as address":"पते के समान",
 
 "Whatsapp No":"व्हाट्सएप नंबर",
 "Retailer Points List":"खुदरा विक्रेता अंक सूची",
@@ -108,10 +110,11 @@
       "Document Information":"दस्तावेज़ की जानकारी",
       "Upload File":"दस्तावेज़ अपलोड करें",
       "Select Document":"दस्तावेज़ का चयन करें",
-      "Adhar card":"आधार कार्ड",
+      "Aadhar card":"आधार कार्ड",
       "Pan Card":"पैन कार्ड",
       "Upload Document":"डाक्यमेन्ट अपलोड करें",
       "Voter Card":"वोटर कार्ड",
+      "Aadhar card Number":"आधार कार्ड नंबर",
       "Aadhaar Number":"आधार नंबर",
       "Pan Card Number":"पैन कार्ड नंबर",
       "Voter Card Number":"वोटर कार्ड नंबर",
@@ -219,6 +222,8 @@
       "Update Available":"अपडेट उपलब्ध है",
       "Change Language":"अपनी भाषा बदलें",
       "Update Now":"अभी अप्डेट करें",
+      "Update":"अप्डेट",
+
       "TODAY":"आज",
       "Invalid Coupon Code":"कूपन कोड अमान्य है",
       "Coupon Already Used":"कूपन पहले से ही उपयोग किया गया है",
