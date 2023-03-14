@@ -123,7 +123,8 @@
                             </div>
                         </div>
                         <div class="text-box">
-                            <p>{{karigar_detail.document_type}}</p>
+                            <p *ngIf="karigar_detail.document_type!='Adharcard'">{{karigar_detail.document_type}}</p>
+                               <p *ngIf="karigar_detail.document_type=='Adharcard'">{{'Aadhar card' | translate}}</p>
                             <h6>{{karigar_detail.document_no}}</h6>
                         </div>
                     </div>

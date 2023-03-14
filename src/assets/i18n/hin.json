@@ -86,6 +86,8 @@
       "Select Request Type":"अनुरोध प्रकार चुनें",
       "Image":"छवि",
       "Coupon Code Manual Enter":"कूपन कोड मैनुअल दर्ज करें",
+      "Coupon Code":"कूपन कोड",
+      "Scanned Date":"स्क्यान गरिएको मिति",
 
       "Alert":"चेतावनी",
       "Success":"पूर्ण",
@@ -112,6 +114,7 @@
       "Select Document":"दस्तावेज़ का चयन करें",
       "Aadhar card":"आधार कार्ड",
       "Pan Card":"पैन कार्ड",
+      "Scan Points":"स्कैन अंक",
       "Upload Document":"डाक्यमेन्ट अपलोड करें",
       "Voter Card":"वोटर कार्ड",
       "Aadhar card Number":"आधार कार्ड नंबर",

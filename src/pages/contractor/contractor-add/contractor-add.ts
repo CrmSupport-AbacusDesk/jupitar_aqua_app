@@ -40,7 +40,7 @@ export class ContractorAddPage {
   }
   
   ionViewDidLoad() {
-    this.distributorList();
+    this.getData()
     this.getCategory();
     this.getProduct();
     this.translate.get("Camera")
@@ -77,6 +77,26 @@ export class ContractorAddPage {
     });
     toast.present();
   }
+  karigar_detail:any={};
+  state:any;
+  getData()
+    {
+        console.log("Check");
+        this.dbService.post_rqst({'karigar_id':this.dbService.karigar_id},'app_karigar/karigarHome')
+        .subscribe((r:any)=>
+        {
+            console.log(r);
+            this.karigar_detail=r['karigar'];
+            this.state=this.karigar_detail.state
+            console.log(this.state)
+            this.distributorList();
+
+            console.log(this.karigar_detail.state)
+            
+            
+           
+        });
+    }
   
   
   presentLoading() 
@@ -410,13 +430,11 @@ submit(){
       }
     });
   }
-  filter:any;
+  // filter:any={};
   distributor_list:any=[];
   distributorList(){
-    
-   
   
-    this.dbService.post_rqst( {'filter':this.filter,'karigar_id': this.dbService.karigar_id},'app_karigar/distributorList').subscribe( r =>
+    this.dbService.post_rqst( {'filter':{'state':this.state}},'app_karigar/distributorList').subscribe( r =>
       {
         console.log(r);
         this.distributor_list=r['karigars'];

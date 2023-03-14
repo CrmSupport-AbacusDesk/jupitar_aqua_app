@@ -22,7 +22,7 @@
       <ion-segment [(ngModel)]="history">
         
         <ion-segment-button  value="scanned">
-          <span *ngIf="karigar_point.user_type == 1">{{ 'Earn Points' | translate }}</span>
+          <span *ngIf="karigar_point.user_type == 1">{{ 'Scan Points' | translate }}</span>
           <span *ngIf="karigar_point.user_type == 2">{{ 'Earn by Retailer' | translate }}</span>
 
         </ion-segment-button>
@@ -64,10 +64,12 @@
             </div>
             <div class="point-block" *ngFor="let list of point_transfer; let i=index" >
               <div class="point-content">
-                <p>{{list.summary | translate}}</p>
-                <span>{{list.date_created | date:'d MMMM y'}}</span>
+                <p> <span style="color:#a79e9e">{{'Coupon Code' | translate}}:</span>{{list.coupon_code | translate}}</p>
+                <p> <span style="color:#a79e9e">{{'Scanned Date' | translate}}:</span>{{list.scan_by_karigar_date | date:'d MMMM y'}}</p>
+                <!-- <p>{{list.karigar_coupon_value | translate}}</p> -->
+                <!-- <span>{{list.date_created | date:'d MMMM y'}}</span> -->
               </div>
-              <div class="pts">{{list.points}} PT</div>
+              <div class="pts">{{list.karigar_coupon_value}} PT</div>
             </div>
           </ng-container>
           
