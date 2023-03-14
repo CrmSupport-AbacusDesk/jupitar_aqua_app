@@ -37,6 +37,8 @@ export class ContractorAddPage {
   
   constructor(public navCtrl: NavController, public navParams: NavParams,private camera: Camera, public actionSheetController: ActionSheetController, public toastCtrl: ToastController, public dbService:DbserviceProvider, public loadingCtrl:LoadingController, public translate:TranslateService) {
     // this.dbService.karigar_id;
+
+    this.today_date = new Date().toISOString().slice(0,10);
   }
   
   ionViewDidLoad() {
@@ -171,7 +173,7 @@ export class ContractorAddPage {
   {
     let val=JSON.parse(JSON.stringify(this.conData1));
     console.log(val);
-    if(this.conData1.product_point_group!='' && this.conData1.qty!='' ){
+    if(this.conData1.product_point_group!='' && this.conData1.qty!=''  && this.conData1.bill_no!='' && this.conData1.bill_date!='' && this.conData1.bill_amount!=''){
       this.contractorData.push(val);
     }
     console.log(this.contractorData);
@@ -179,6 +181,9 @@ export class ContractorAddPage {
     this.conData1.product_point_group='';
   
     this.conData1.qty='';
+    this.conData1.bill_no='';
+    this.conData1.bill_date='';
+    this.conData1.bill_amount='';
     
   }
   

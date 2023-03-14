@@ -3,6 +3,7 @@ import { IonicPageModule } from 'ionic-angular';
 import { RegistrationPage } from './registration';
 import { TranslateModule, TranslateLoader} from '@ngx-translate/core';
 import { TranslateHttpLoader} from '@ngx-translate/http-loader';
+import { IonicSelectableModule } from 'ionic-selectable';
 import { HttpClient } from '@angular/common/http';
 
 export function createTranslateLoader(http: HttpClient) {
@@ -15,6 +16,7 @@ export function createTranslateLoader(http: HttpClient) {
     RegistrationPage,
   ],
   imports: [
+    IonicSelectableModule,
     IonicPageModule.forChild(RegistrationPage),
     TranslateModule.forRoot({
       loader: {

@@ -35,6 +35,12 @@
       <p><strong>{{'Product Detail' | translate}}:</strong> {{row.product_point_group | titlecase}}</p>
       <!-- <p><strong>{{'Size' | translate}}:</strong>  {{row.length}} * {{row.width}}</p> -->
       <p><strong>{{'Quantity' | translate}}:</strong>  {{row.qty}}</p>
+
+      <p><strong>{{'Bill No.' | translate}}:</strong>  {{row.bill_no}}</p>
+      <p><strong>{{'Bill Date' | translate}}:</strong>  {{row.bill_date}}</p>
+      <p><strong>{{'Bill Amount' | translate}}:</strong>  {{row.bill_amount}}</p>
+
+
       <p *ngIf="conDetail.status =='Reject'"><strong>{{'Reason' | translate}}:</strong>  {{conDetail.status_reason ? conDetail.status_reason :'N/A'}}</p>
     </ion-item>
   </ng-container>

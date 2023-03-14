@@ -31,6 +31,10 @@ export class ProfilePage {
     lang:any='';
     upload_url:any =''
     tokenInfo:any={};
+    productDataImg:any =[]
+    conDetail:any = {};
+    productData:any =[]
+    id:any
     constructor(public navCtrl: NavController, public app: App, public navParams: NavParams,public service:DbserviceProvider,public loadingCtrl:LoadingController, public storage: Storage,public events: Events,public actionSheetController: ActionSheetController,private camera: Camera,public alertCtrl:AlertController,public modalCtrl: ModalController,public db:DbserviceProvider,public translate:TranslateService,public platform:Platform,private socialSharing: SocialSharing, public constant: ConstantProvider){
         this.upload_url = constant.upload_url;
 
@@ -503,4 +507,21 @@ export class ProfilePage {
             this.showSuccess("Document Updated")   
         });
     }
+
+
+
+
+    contractorDetail(){
+        this.service.post_rqst( {'id':this.id}, 'app_karigar/get_contractor_request_detail').subscribe( r =>
+          {
+            this.loading.dismiss();
+            this.conDetail = r.request_detail[0];
+            this.productData = this.conDetail.parts;
+            this.productDataImg = this.conDetail.image;
+            console.log(this.productDataImg);
+            
+    
+    
+          });
+        }
 }

@@ -119,13 +119,13 @@ export class RegistrationPage {
         });
     }
     
-    getdistributorlist(state){
+       getdistributorlist(state){
         console.log(state);
-        
-        this.state =state;
+        this.filter.state = this.state;
+        // this.state =state;
         if(this.data.user_type == '2'){
 
-        this.service.post_rqst( {'state':this.state}, 'app_karigar/distributorList').subscribe( r =>
+        this.service.post_rqst( {'filter':this.filter}, 'app_karigar/distributorList').subscribe( r =>
           {
             this.distributor_list = r.karigars;
             console.log(this.distributor_list);
@@ -506,5 +506,203 @@ presentLoading()
     })
     
 }
+
+
+
+
+
+
+
+
+
+
+
+
+onUploadBackChange(evt: any) {
+    let actionsheet = this.actionSheetController.create({
+        title:this.upl_file,
+        cssClass: 'cs-actionsheet',
+        buttons:[{
+            cssClass: 'sheet-m',
+            text: this.cam,
+            icon:'camera',
+            handler: () => {
+                this.backDocPhoto();
+            }
+        },
+        {
+            cssClass: 'sheet-m1',
+            text: this.gal,
+            icon:'image',
+            handler: () => {
+                this.backDocImage();
+            }
+        },
+        {
+            cssClass: 'cs-cancel',
+            text: this.cancl,
+            role: 'cancel',
+            handler: () => {
+            }
+        }
+    ]
+});
+actionsheet.present();
+}
+backDocPhoto()
+{
+    const options: CameraOptions = {
+        quality: 70,
+        destinationType: this.camera.DestinationType.DATA_URL,
+        targetWidth : 500,
+        targetHeight : 400
+    }
+    
+    console.log(options);
+    this.camera.getPicture(options).then((imageData) => {
+        this.flag=false;
+        this.data.document_image_back = 'data:image/jpeg;base64,' + imageData;
+        console.log(this.data.document_image_back);
+    }, (err) => {
+    });
+}
+backDocImage()
+{
+    const options: CameraOptions = {
+        quality: 70,
+        destinationType: this.camera.DestinationType.DATA_URL,
+        sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,
+        saveToPhotoAlbum:false
+    }
+    console.log(options);
+    this.camera.getPicture(options).then((imageData) => {
+        this.flag=false;
+        this.data.document_image_back = 'data:image/jpeg;base64,' + imageData;
+        console.log(this.data.document_image_back);
+    }, (err) => {
+    });
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+shop_image:any=[];
+                
+                
+fileChange(image)
+{
+  
+  this.shop_image.push({'image':image});
+  console.log(this.shop_image);
+  this.image = '';
+}
+
+remove_image_shop(i:any)
+{
+  this.shop_image.splice(i,1);
+}
+
+
+
+
+captureImageShop()
+{
+  let actionsheet = this.actionSheetController.create({
+    title:"Bill Upload Media",
+    cssClass: 'cs-actionsheet',
+    
+    buttons:[{
+      cssClass: 'sheet-m',
+      text: 'Camera',
+      icon:'camera',
+      handler: () => {
+        console.log("Camera Clicked");
+        
+        this.takePhoto1();
+      }
+    },
+    {
+      cssClass: 'sheet-m1',
+      text: 'Gallery',
+      icon:'image',
+      handler: () => {
+        console.log("Gallery Clicked");
+        this.getImage1();
+      }
+    },
+    {
+      cssClass: 'cs-cancel',
+      text: 'Cancel',
+      role: 'cancel',
+      icon:'cancel',
+      handler: () => {
+        console.log('Cancel clicked');
+      }
+    }
+  ]
+});
+actionsheet.present();
+}
+
+
+
+image:any;
+takePhoto1()
+{
+console.log("i am in camera function");
+const options: CameraOptions = {
+  quality: 100,
+  destinationType: this.camera.DestinationType.DATA_URL,
+  targetWidth : 1000,
+  targetHeight : 1000
+}
+
+console.log(options);
+this.camera.getPicture(options).then((imageData) => {
+  this.image = 'data:image/jpeg;base64,' + imageData;
+//   this.image=  imageData;
+  console.log(this.image);
+  if(this.image)
+  {
+    this.fileChange(this.image);
+  }
+}, (err) => {
+});
+}
+getImage1()
+{
+const options: CameraOptions = {
+  quality: 70,
+  destinationType: this.camera.DestinationType.DATA_URL,
+  sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,
+  saveToPhotoAlbum:false
+}
+console.log(options);
+this.camera.getPicture(options).then((imageData) => {
+  this.image= 'data:image/jpeg;base64,' + imageData;
+//   this.image=  imageData;
+//   this.image= imageData.substr(imageData.lastIndexOf('/') + 1);
+  console.log(this.image);
+  if(this.image)
+  {
+    this.fileChange(this.image);
+  }
+}, (err) => {
+});
+}
+
+
+
 
 }

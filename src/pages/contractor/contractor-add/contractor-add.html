@@ -47,9 +47,32 @@
               <ion-input type="tel"   [(ngModel)]="conData1.qty" name="qty" #qty="ngModel" autocomplete="off" autocorrect="off" min="0"  maxlength="5" minlength="1" ></ion-input>
             </ion-item>
             
+            <ion-item class="cs-input" >
+              <ion-label floating>{{'Bill No.' | translate}}</ion-label>
+              <ion-input type="text"   [(ngModel)]="conData1.bill_no" name="bill_no" #bill_no="ngModel" autocomplete="off" autocorrect="off"  ></ion-input>
+            </ion-item>
+            
+            <!-- <ion-item class="cs-input" >
+              <ion-label floating>{{'Bill Date' | translate}}</ion-label>
+              <ion-input type="text"   [(ngModel)]="conData1.bill_date" name="bill_date" #bill_date="ngModel" autocomplete="off" autocorrect="off"  ></ion-input>
+            </ion-item> -->
 
-            
-            
+
+
+            <ion-item class="cs-date mb0" [ngClass]="{'error':f.submitted && bill_date?.invalid}">
+              <ion-label>{{'Bill Date' | translate}}*</ion-label>
+              <ion-datetime displayFormat="DD/MM/YYYY" max={{today_date}} type="text" name="bill_date" #bill_date="ngModel" [(ngModel)]="conData1.bill_date">
+              </ion-datetime>
+          </ion-item>
+
+            <ion-item class="cs-input" >
+              <ion-label floating>{{'Bill Amount' | translate}}</ion-label>
+              <ion-input type="text"   [(ngModel)]="conData1.bill_amount" name="bill_amount" #bill_amount="ngModel" autocomplete="off" autocorrect="off"  ></ion-input>
+            </ion-item>
+
+         
+
+
             <!-- <ion-item class="cs-input" >
               <ion-label floating>{{'Total Point' | translate}}</ion-label>
               <ion-input type="tel"   [(ngModel)]="conData1.totalPoint" name="totalPoint" #qty="ngModel" autocomplete="off" autocorrect="off"   readonly></ion-input>
@@ -66,8 +89,20 @@
                   <p><strong>{{'Product' | translate}}: </strong> {{row.product_point_group}}</p>
                   <div class="item-flex">
                     <p><strong>{{'Quantity' | translate}}: </strong> {{row.qty}}</p>
+
                     <!-- <p><strong>Point Request: </strong> {{row.totalPoint}}</p> -->
                   </div>
+
+                  <div class="item-flex">
+                    <p><strong>{{'Bill No.' | translate}}: </strong> {{row.bill_no}}</p>
+                  </div>
+                  <div class="item-flex">
+                    <p><strong>{{'Bill Date' | translate}}: </strong> {{row.bill_date}}</p>
+                  </div>
+                  <div class="item-flex">
+                    <p><strong>{{'Bill Amount' | translate}}: </strong> {{row.bill_amount}}</p>
+                  </div>
+
                 </div>
                 <div class="data-action">
                   <a ion-fab mini color="danger" (click)="deleteItem(i)"><ion-icon name="trash"></ion-icon></a>

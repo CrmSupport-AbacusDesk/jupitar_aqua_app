@@ -5314,9 +5314,9 @@ ion-list{
 .rgs_adimg {
     height: 300px;
 }
-.upload-document.up_im {
-    height: 176px;
-}
+// .upload-document.up_im {
+//     height: 176px;
+// }
 .sld_im img {
     padding: 10px 10px 2px 10px;
 }
@@ -5330,4 +5330,43 @@ p.wbl_bh {
     font-size: 12px !important;
     line-height: 16px !important;
     margin: 0px 10px !important;
+}
+.upload-document.up_im {
+    height: 87px;
+}
+
+
+.hm_one ul li {
+    width: calc(100% - 6px) !important;
+}
+
+.hm_one ul li p {
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.wlr_lst {
+    width: 92% !important;
+    height: 83px !important;
+    border: 1px solid #0086c9 !important;
+}
+
+
+.wlr_lst .left-count {
+    width: 85% !important;
+}
+
+.left-count.lft_cntss {
+    border: 1px solid skyblue;
+    margin: 10px;
+    height: 68px;
+    padding-top: 13px;
+}
+i.material-icons.shp_img {
+    font-size: 100px;
+    padding-top: 6px;
+}
+
+.cn_otr {
+    text-align: center;
 }

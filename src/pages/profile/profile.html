@@ -113,13 +113,19 @@
                     </div>
                     
                    
-                    <div class="profile-card"  *ngIf="karigar_detail.document_image && karigar_detail.document_type && karigar_detail.document_no">
+                    <div class="profile-card"  *ngIf="karigar_detail.document_image && karigar_detail.document_image_back && karigar_detail.document_type && karigar_detail.document_no">
                         <div class="text-center">
                             <h2>{{ 'Document Information' | translate }}</h2>
                         </div>
                         <div class="text-box">
                             <div class="doc-box dc_prt">
                                 <img src="{{upload_url + karigar_detail.document_image}}" (click)="viewDoc()">
+                            </div>
+                        </div>
+
+                        <div class="text-box">
+                            <div class="doc-box dc_prt">
+                                <img src="{{upload_url + karigar_detail.document_image_back}}" (click)="viewDoc()">
                             </div>
                         </div>
                         <div class="text-box">
@@ -130,7 +136,14 @@
                     </div>
 
 
-
+                    <ng-container >
+                       
+                        <div class="pr16 pl16" *ngFor="let row of productDataImg; let i = index">
+                          <div class="bill_img">
+                            <img src="{{upload_url + row.image}}">
+                          </div>
+                        </div>
+                      </ng-container>
                     
                     <div class="profile-card">
                         <div class="text-center">

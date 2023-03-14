@@ -86,6 +86,7 @@ import { FilterProductPageModule } from '../pages/filter-product/filter-product.
 import { ContractorListPageModule } from '../pages/contractor/contractor-list/contractor-list.module';
 import { ContractorAddPageModule } from '../pages/contractor/contractor-add/contractor-add.module';
 import { ContractorDetailPageModule } from '../pages/contractor/contractor-detail/contractor-detail.module';
+import { IonicSelectableModule } from 'ionic-selectable';
 import { RegistrationPageModule } from '../pages/login-section/registration/registration.module';
 export function createTranslateLoader(http: HttpClient) {
     return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -109,6 +110,7 @@ export function createTranslateLoader(http: HttpClient) {
         IonicModule.forRoot(MyApp),
         ScanPageModule,
         CoupanCodePageModule,
+        IonicSelectableModule,
         RegistrationPageModule,
         GiftDetailPageModule,
         GiftListPageModule,
