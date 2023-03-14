@@ -103,7 +103,7 @@ export class PointListPage {
 
 
         this.karigar_point=r['karigar'];
-        this.point_transfer=r['point_transfer'];
+        this.point_transfer=r['coupon'];
          
         
 

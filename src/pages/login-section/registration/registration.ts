@@ -50,15 +50,17 @@ export class RegistrationPage {
         this.data.profile='';
         this.data.document_image='';
         console.log(this.data.profile);
-        this.data.document_type='Adharcard';
+        this.data.document_type='Aadharcard';
         this.today_date = new Date().toISOString().slice(0,10);
         this.data.user_type=1;
         console.log(this.data.user_type);
+        
         if(navParams.data.data){
             this.data = navParams.data.data;
             this.data.karigar_edit_id = this.data.id;
             this.data.profile_edit_id = this.data.id;
             this.data.doc_edit_id = this.data.id;
+            console.log(this.data.status);
 
 
             // this.data.profile= this.data.profile;
