@@ -158,7 +158,7 @@
                     
                     <ion-item class="cs-select" [ngClass]="{'error':f.submitted && state?.invalid}">
                         <ion-label>{{'State' | translate}}*</ion-label>
-                        <ion-select name="state" [(ngModel)]="data.state" #state="ngModel" (ngModelChange)="getDistrictList(data.state)"  required>
+                        <ion-select name="state" [(ngModel)]="data.state" #state="ngModel" (ngModelChange)="getDistrictList(data.state) || getdistributorlist(data.state)"  required>
                             <ion-option *ngFor="let row of state_list" value="{{row.state_name}}">{{row.state_name}}</ion-option>
                         </ion-select>
                     </ion-item>
@@ -209,6 +209,10 @@
         
         <!-- /////// Importaint //////////// -->
         
+<div class="dchn" *ngIf="data.user_type=='1' ">
+
+
+
         <div class="heading line" *ngIf="data.status!='Verified'">
             <p>{{'Document Information' | translate}}</p>
         </div>
@@ -242,6 +246,67 @@
 </div>
                    
                     <ion-item class="cs-input mb0 mt10" *ngIf="data.document_type=='Aadharcard'" [ngClass]="{'error':f.submitted && document_no?.invalid}" >
+                        <ion-label floating>{{'Aadhar card Number' | translate}}</ion-label>
+                        <ion-input type="tel" name="document_no" #document_no="ngModel" [(ngModel)]="data.document_no" maxlength="12" minlength="12" ></ion-input>
+                    </ion-item>
+                    
+                    <ion-item class="cs-input mb0 mt10" *ngIf="data.document_type=='PanCard'" [ngClass]="{'error':f.submitted && document_no?.invalid}">
+                        <ion-label floating>{{'Pan Card Number' | translate}}</ion-label>
+                        <ion-input type="text" name="document_no" #document_no="ngModel" [(ngModel)]="data.document_no" ></ion-input>
+                    </ion-item>
+                    
+                    <ion-item class="cs-input mb0 mt10" *ngIf="data.document_type=='VoterCard'" [ngClass]="{'error':f.submitted && document_no?.invalid}">
+                        <ion-label floating>{{'Voter Card Number' | translate}}</ion-label>
+                        <ion-input type="text" name="document_no" #document_no="ngModel" [(ngModel)]="data.document_no" ></ion-input>
+                    </ion-item>
+                </ion-list>
+            </div>
+        </div>
+        
+
+
+    </div>
+
+
+
+
+    <div class="dchn" *ngIf="data.user_type=='2' ">
+
+
+
+        <div class="heading line" *ngIf="data.status!='Verified'">
+            <p>{{'Document Information' | translate}}</p>
+        </div>
+        
+        <div class="ragistration-fields rgs_adimg" *ngIf="data.status!='Verified'">
+            <div class="cs-form">
+                <ion-list>
+                    <ion-item class="cs-select" [ngClass]="{'error':f.submitted && document_type?.invalid}">
+                        <ion-label>{{'Select Document' | translate}}</ion-label>
+                        <ion-select name="document_type" [(ngModel)]="data.document_type" #document_type="ngModel">
+                            <ion-option value="Aadharcard">{{'Aadhar card' | translate}}</ion-option>
+                            <ion-option value="PanCard">{{'Pan Card' | translate}}</ion-option>
+                            <ion-option value="VoterCard">{{'Voter Card' | translate}}</ion-option>
+                        </ion-select>
+                    </ion-item>
+                    
+                    
+                    <div class="upload-document up_im" (click)="onUploadChange()">
+                        <p *ngIf="data.document_image==''"><i class="material-icons">add_circle</i><br>{{'Upload Document' | translate}}</p>
+                        <!-- <img *ngIf="data.document_image != ''" [src]="data.document_image" alt="" required> -->
+                        <img src="{{data.doc_edit_id ? uploadurl+data.document_image : data.document_image}}" *ngIf="data.document_image != ''">
+                    </div>
+
+<div class="aads" *ngIf="data.document_type=='Aadharcard'">
+   
+    <div class="upload-document up_im" (click)="onUploadBackChange()">
+        <!-- <p *ngIf="data.document_image_back==''"><i class="material-icons">add_circle</i><br>{{'Upload Document' | translate}}</p> -->
+        <p ><i class="material-icons">add_circle</i><br>{{'Upload Document' | translate}}</p>
+        <img src="{{data.doc_edit_id ? uploadurl+data.document_image_back : data.document_image_back}}" *ngIf="data.document_image_back != ''" >
+    </div>
+</div>
+                   
+                    <ion-item class="cs-input mb0 mt10" *ngIf="data.document_type=='Aadharcard'" [ngClass]="{'error':f.submitted && document_no?.invalid}" >
                         <ion-label floating>{{'Aadhar card Number' | translate}}*</ion-label>
                         <ion-input type="tel" name="document_no" #document_no="ngModel" [(ngModel)]="data.document_no" maxlength="12" minlength="12" required></ion-input>
                     </ion-item>
@@ -252,13 +317,24 @@
                     </ion-item>
                     
                     <ion-item class="cs-input mb0 mt10" *ngIf="data.document_type=='VoterCard'" [ngClass]="{'error':f.submitted && document_no?.invalid}">
-                        <ion-label floating>{{'Voter Card Number' | translate}}*</ion-label>
-                        <ion-input type="text" name="document_no" #document_no="ngModel" [(ngModel)]="data.document_no" required></ion-input>
+                        <ion-label floating>{{'Voter Card Number' | translate}}</ion-label>
+                        <ion-input type="text" name="document_no" #document_no="ngModel" [(ngModel)]="data.document_no" ></ion-input>
                     </ion-item>
                 </ion-list>
             </div>
         </div>
         
+
+
+    </div>
+
+
+
+
+
+
+
+
 
 
 <div class="shp" *ngIf="data.user_type=='2' ">
@@ -272,8 +348,8 @@
             <div class="add-new padding0" >
                 <div class="uplode-image">
                     <ul>
-                        <li *ngFor="let pic of shop_image;let i = index;" >
-                            <img src="{{pic.image}}" >
+                        <li *ngFor="let pic of image_data;let i = index;" class="ls_img">
+                            <img src="{{uploadurl + pic.image}}" >
                             <button><i class="material-icons" (click)="remove_image_shop(i)">clear</i></button>
                         </li>
                         

@@ -196,6 +196,7 @@ export class ProfilePage {
             console.log(r);
             this.loading.dismiss();
             this.karigar_detail=r['karigar'];
+            this.productDataImg=r['karigar']['shop_image'];
             this.language=r['language'];
         });
     }
@@ -511,17 +512,17 @@ export class ProfilePage {
 
 
 
-    contractorDetail(){
-        this.service.post_rqst( {'id':this.id}, 'app_karigar/get_contractor_request_detail').subscribe( r =>
-          {
-            this.loading.dismiss();
-            this.conDetail = r.request_detail[0];
-            this.productData = this.conDetail.parts;
-            this.productDataImg = this.conDetail.image;
-            console.log(this.productDataImg);
+    // contractorDetail(){
+    //     this.service.post_rqst( {'id':this.id}, 'app_karigar/get_contractor_request_detail').subscribe( r =>
+    //       {
+    //         this.loading.dismiss();
+    //         this.conDetail = r.request_detail[0];
+    //         this.productData = this.conDetail.parts;
+    //         this.productDataImg = this.conDetail.image;
+    //         console.log(this.productDataImg);
             
     
     
-          });
-        }
+    //       });
+    //     }
 }

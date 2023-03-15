@@ -36,13 +36,14 @@ export class RegistrationPage {
     today_date:any;
     whatsapp_mobile_no:any='';
     uploadurl: any = "";
-    filter: any='';
-    state: any;
+    filter: any={};
+    state: any='';
+    conData1: any;
+    contractorData:any =[];
     // defaultSelectedRadio = "data.user_type=1";
     
     
     constructor(public navCtrl: NavController, public constant:ConstantProvider, public toastCtrl: ToastController,public navParams: NavParams, public service:DbserviceProvider,public alertCtrl:AlertController ,public actionSheetController: ActionSheetController,private camera: Camera,private loadingCtrl:LoadingController,public modalCtrl: ModalController,private storage:Storage,public translate:TranslateService) {
-        this.getstatelist();
         this.uploadurl = this.constant.upload_url;
         this.data.mobile_no = this.navParams.get('mobile_no');
         this.lang = this.navParams.get('lang');
@@ -55,14 +56,24 @@ export class RegistrationPage {
         this.data.user_type=1;
         console.log(this.data.user_type);
         
+        this.getstatelist();
         if(navParams.data.data){
             this.data = navParams.data.data;
+
+            
+
+
+            console.log(this.data.shop_image)
+            this.image_data=this.data.shop_image
+            console.log(this.image_data)
+
+
             this.data.karigar_edit_id = this.data.id;
             this.data.profile_edit_id = this.data.id;
             this.data.doc_edit_id = this.data.id;
             console.log(this.data.status);
 
-
+            this.getdistributorlist(this.data.state)
             // this.data.profile= this.data.profile;
             // this.data.document_image = this.data.document_image
             // this.data.document_image_back = this.data.document_image_back
@@ -85,6 +96,7 @@ export class RegistrationPage {
         this.translate.setDefaultLang(this.lang);
         this.translate.use(this.lang);
         if (this.data.state) {
+            console.log(this.data.state)
             this.getDistrictList(this.data.state);
             this.getdistributorlist(this.data.state)
         }
@@ -121,9 +133,11 @@ export class RegistrationPage {
     
        getdistributorlist(state){
         console.log(state);
-        this.filter.state = this.state;
-        // this.state =state;
+        this.filter.state = state;
+        console.log();
+        
         if(this.data.user_type == '2'){
+            console.log(this.data.user_type)
 
         this.service.post_rqst( {'filter':this.filter}, 'app_karigar/distributorList').subscribe( r =>
           {
@@ -147,6 +161,7 @@ export class RegistrationPage {
                 this.state_list=r['states'];
                 this.karigar_id=r['id'];
                 console.log(this.state_list);
+                this.getdistributorlist(this.data.state)
             });
         }
         getDistrictList(state_name)
@@ -237,6 +252,24 @@ export class RegistrationPage {
             this.presentLoading();
            
             console.log(this.data);
+         
+            
+
+
+            // if(this.contractorData < 1){
+            //     this.alertToast('Please add one item at least!')
+            //     return
+            //    }
+            // this.presentLoading();
+            // this.saveFlag = true;
+            // this.conData1.part = this.contractorData;
+            // this.conData1.contractor_id = this.service.karigar_id;
+            // this.conData1.image = this.image_data?this.image_data:[];
+
+            this.data.shop_image = this.image_data?this.image_data:[];
+            console.log(this.image_data);
+            
+
             this.service.post_rqst( {'karigar': this.data },'app_karigar/addKarigar')
             .subscribe( (r) =>
             {
@@ -597,20 +630,20 @@ backDocImage()
 
 
 
-shop_image:any=[];
+image_data:any=[];
                 
                 
 fileChange(image)
 {
   
-  this.shop_image.push({'image':image});
-  console.log(this.shop_image);
+  this.image_data.push({'image':image});
+  console.log(this.image_data);
   this.image = '';
 }
 
 remove_image_shop(i:any)
 {
-  this.shop_image.splice(i,1);
+  this.image_data.splice(i,1);
 }
 
 
@@ -704,5 +737,13 @@ this.camera.getPicture(options).then((imageData) => {
 
 
 
+alertToast(msg){
+    const toast = this.toastCtrl.create({
+      message: msg,
+      duration: 3000
+    });
+    toast.present();
+  }
+  
 
 }
